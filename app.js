@@ -2,13 +2,21 @@ const express = require('express');
 const app = express();
 var bodyParser = require('body-parser')
 
-
-
 app.use(express.static(__dirname + '/library'));
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
+const User = require("./routers/user")
+// const Order = require("./routers/order")
+// const Worker = require("./routers/Worker")
+
+
+app.use('/user', User)
+// app.use('/order', Order)
+// app.use('/worker', Worker)
+
 
 app.get('/', (req, res) => {
 	res.render('index');
@@ -78,6 +86,4 @@ app.get('/test/admin/users/edit/:userId', (req, res) => {
 	res.render('admin/add-user');
 })
 
-
-
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(3001, () => console.log('Example app listening on port 3000!'))

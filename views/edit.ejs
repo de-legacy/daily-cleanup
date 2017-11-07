@@ -1,0 +1,28 @@
+	<table>
+		<thead>
+			<tr>
+				<td> fullname </td>
+				<td> address </td>
+				<td> phone </td>
+				<td> email </td>
+				<td> username </td>
+				<td> password </td>
+				<td> privelege </td>
+			</tr>
+		</thead>	
+		<tbody>
+			<tr>
+				<form action="/user/edit/<%= edit.id %> " method="post">
+					 <input type="hidden" name="id" value= <%= edit.id %> >
+				<td> <input type="text" name="first_name" value="<%= edit.fullname %>"> </td>
+				<td> <input type="text" name="address" value="<%= edit.address %>"> </td>
+				<td> <input type="text" name="phone" value="<%= edit.phone %>"> </td>
+				<td> <input type="text" name="email" value="<%= edit.email %>"> </td>
+				<td> <input type="text" name="username"  value="<%= edit.username %>"> </td>
+				<td> <input type="text" name="password"  value="<%= edit.password %>"> </td>
+				<td> <input type="text" name="privelege"  value="<%= edit.privelege %>"> </td>
+				<td> <input type="submit" value="EDIT"></td>
+				</form>
+			</tr>	
+		</tbody>	
+	</table>		
