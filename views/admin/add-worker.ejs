@@ -1,0 +1,28 @@
+<%- include('../partials/header', {title: 'Admin: Add Worker'})  %>
+
+<main class="content">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 simple-form">
+				<h3 class="no-mt">Add Worker</h3><!-- /.no-mt -->
+
+				<form action="/test/admin/workers/add" method="POST">
+					<div class="input-group">
+						<label>Nama Worker</label>
+						<input type="text" class="form-control" placeholder="Name" name="name" id="name">
+					</div>
+
+					<div class="input-group">
+						<label>Rating</label>
+						<input type="text" class="form-control" placeholder="Rating" name="workerRating" id="workerRating">
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+								<input class="btn btn-info" type="submit" value="Tambah" />
+						</div><!-- /.col-md-6 -->
+				</form>
+			</div><!-- /.col-md-12 -->
+		</div><!-- /.row -->
+	</main>
+
+<%- include('../partials/footer') %>

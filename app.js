@@ -26,6 +26,10 @@ app.get('/test/register', (req, res) => {
 	res.render('register');
 })
 
+app.get('/test/top-workers', (req, res) => {
+	res.render('top-workers');
+})
+
 app.get('/test/thankyou', (req, res) => {
 	res.render('thankyou', {title: 'Terima kasih telah bergabung', content: 'Silahkan mulai melakukan pemesanan pada link dibawah', link: '/test/pemesanan'});
 })
@@ -49,5 +53,31 @@ app.get('/test/user/order-complete', (req, res) => {
 app.post('/test/user/order-complete', (req, res) => {
 	res.send(req.body);
 })
+
+app.get('/test/admin/users', (req, res) => {
+	res.render('admin/all-users');
+})
+
+app.get('/test/admin/workers', (req, res) => {
+	res.render('admin/all-workers');
+})
+
+app.get('/test/admin/workers/banned', (req, res) => {
+	res.render('admin/all-banned-workers');
+})
+
+app.get('/test/admin/workers/add', (req, res) => {
+	res.render('admin/add-worker');
+})
+
+app.get('/test/admin/workers/edit/:workerId', (req, res) => {
+	res.render('admin/add-worker');
+})
+
+app.get('/test/admin/users/edit/:userId', (req, res) => {
+	res.render('admin/add-user');
+})
+
+
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))

@@ -1,0 +1,54 @@
+<%- include('../partials/header', {title: 'Admin: Add User'})  %>
+
+<main class="content">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 simple-form">
+			<h3 class="no-mt">Tambah User</h3><!-- /.no-mt -->
+
+			<form action="/login" method="POST">
+				<div class="input-group">
+					<label>Nama Lengkap</label>
+					<input type="text" class="form-control" placeholder="Nama" name="fullName" id="fullName">
+				</div>
+
+				<div class="input-group">
+					<label>No. Handphone</label>
+					<input type="tel" class="form-control" placeholder="Phone" name="phoneNumber" id="phoneNumber">
+				</div>
+
+				<div class="input-group">
+					<label>Email</label>
+					<input type="email" class="form-control" placeholder="Email" name="email" id="email">
+				</div>
+
+				<div class="input-group">
+					<label>Alamat</label>
+					<textarea class="form-control" name="address" id="address" cols="30" rows="10"></textarea>
+				</div>
+
+				<div class="input-group">
+					<label>Username</label>
+					<input type="text" class="form-control" placeholder="Username" name="username" id="username">
+				</div>
+
+				<div class="input-group">
+					<label>Password</label>
+					<input type="password" class="form-control" placeholder="Password" name="password" id="password">
+				</div>
+
+				<div class="input-group">
+					<label>Privelege</label>
+					<input type="text" class="form-control" placeholder="Privelege" name="privelege" id="privelege">
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<input class="btn btn-info" type="submit" value="Daftar" />
+					</div><!-- /.col-md-6 -->
+				</div><!-- /.ta-right -->
+			</form>
+		</div><!-- /.col-md-12 -->
+	</div><!-- /.row -->
+</main>
+
+<%- include('../partials/footer') %>

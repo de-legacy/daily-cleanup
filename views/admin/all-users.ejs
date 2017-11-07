@@ -1,0 +1,53 @@
+<%- include('../partials/header', {title: 'Admin: All Users'})  %>
+
+<main class="content">
+	<div class="row">
+		<div class="col-md-12">
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nama Lengkap</th>
+						<th>No. Telephone</th>
+						<th>Email</th>
+						<th>Alamat</th>
+						<th>Username</th>
+						<th>Permission</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>Ahmad Bin Talal</td>
+						<td>0817266290</td>
+						<td>mad22@mail.com</td>
+						<td>Jl. Ciputar no 25</td>
+						<td>zen667</td>
+						<td>0</td>
+						<td>
+							<a href="/test/admin/users/edit/1">Edit</a>
+							<a href="/test/admin/users/delete/1">Delete</a>
+						</td>
+					</tr>
+
+					<tr>
+						<td>Septian Fujia</td>
+						<td>09817261011</td>
+						<td>savet@mail.com</td>
+						<td>Jl. Markopolo no 25</td>
+						<td>marko22</td>
+						<td>1</td>
+						<td>
+							<a href="/test/admin/users/edit/2">Edit</a>
+							<a href="/test/admin/users/delete/2">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div><!-- /.col-md-12 -->
+	</div><!-- /.row -->
+</main><!-- /.content -->
+
+<%- include('../partials/footer') %>
