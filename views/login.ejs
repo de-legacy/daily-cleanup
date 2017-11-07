@@ -1,0 +1,33 @@
+<%- include('partials/header', {title: 'Login'})  %>
+
+	<main class="content">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3 simple-form">
+				<h3 class="no-mt">Login</h3><!-- /.no-mt -->
+
+				<form action="/test/login" method="POST">
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Username" name="username" id="username">
+					</div>
+
+					<div class="input-group">
+						<input type="password" class="form-control" placeholder="Password" name="password" id="password">
+					</div>
+
+
+
+					<div class="row">
+						<div class="col-md-6">
+								<input class="btn btn-info" type="submit" value="Login" />
+						</div><!-- /.col-md-6 -->
+
+						<div class="col-md-6 text-right">
+							<a href="/test/register" class="btn btn-warning">Buat Akun Baru</a>
+						</div><!-- /.col-md-6 -->
+					</div><!-- /.ta-right -->
+				</form>
+			</div><!-- /.col-md-12 -->
+		</div><!-- /.row -->
+	</main>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,64 @@
+<%- include('../partials/header', {title: 'Admin: All Banned Workers'})  %>
+
+<main class="content">
+	<div class="row">
+		<div class="col-md-12">
+
+			<table class="table">
+				<thead>
+					<tr>
+						<th>Nama Worker</th>
+						<th>Rating</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr>
+						<td>Andi Tsung</td>
+						<td>
+							<div class="rating-star">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div><!-- /.rating-star -->
+						</td>
+						<td>
+							<a href="/test/admin/workers/edit/1">Edit</a>
+							<a href="/test/admin/workers/delete/1">Delete</a>
+						</td>
+					</tr>
+
+					<tr>
+						<td>Jenna Kow</td>
+						<td>
+							<div class="rating-star">
+								<i class="fa fa-star"></i>
+							</div><!-- /.rating-star -->
+						</td>
+						<td>
+							<a href="/test/admin/workers/edit/1">Edit</a>
+							<a href="/test/admin/workers/delete/1">Delete</a>
+						</td>
+					</tr>
+
+					<tr>
+						<td>John Mcronald</td>
+						<td>
+							<div class="rating-star">
+								<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>
+							</div><!-- /.rating-star -->
+						</td>
+						<td>
+							<a href="/test/admin/workers/edit/1">Edit</a>
+							<a href="/test/admin/workers/delete/1">Delete</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</div><!-- /.col-md-12 -->
+	</div><!-- /.row -->
+</main><!-- /.content -->
+
+<%- include('../partials/footer') %>
