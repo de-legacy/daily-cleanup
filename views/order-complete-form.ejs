@@ -1,0 +1,32 @@
+<%- include('partials/header', {title: 'Index'})  %>
+
+<main class="content">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 simple-form">
+
+			<h3 class="no-mt">Terima kasih atas Pesanan Anda</h3><!-- /.no-mt -->
+			<p>Harap tinggalkan rating dan pesan untuk Andy sebelum Order selesai</p>
+
+			<form action="/test/user/order-complete" method="POST">
+				<div class="input-group">
+					<label>Review</label>
+					<textarea class="form-control" name="userReview" id="userReview" cols="30" rows="10"></textarea>
+				</div>
+
+				<div class="input-group">
+					<label>Rating</label>
+					<div id="rateYo"></div>
+					<input type="hidden" value="1" name="workerRating" id="workerRating">
+				</div>
+
+				<div class="row">
+					<div class="col-md-6">
+						<input class="btn btn-info" type="submit" value="Kirim" />
+					</div><!-- /.col-md-6 -->
+				</div><!-- /.ta-right -->
+			</form>
+		</div><!-- /.col-md-12 -->
+	</div><!-- /.row -->
+</main><!-- /.content -->
+
+<%- include('partials/footer-order-complete') %>
