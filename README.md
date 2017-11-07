@@ -1,9 +1,9 @@
 # daily-cleanup
-Pair project Hacktiv8
+Pair project Hacktiv8. Go Clean Competitor.
 
 Team:
-* Ahmad Syahab 
-* Septian Ahmad Fujianto 
+* Ahmad Syahab
+* Septian Ahmad Fujianto
 
 MVP:
 * Show rating for Workers.
