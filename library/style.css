@@ -1,0 +1,36 @@
+.main-header {
+	color: white;
+	padding: 2rem 0;
+	background: #00acc1;
+}
+
+	.main-title {
+		margin-top: 0;
+		margin-bottom: 1rem;
+	}
+
+	.main-title a{
+		color: #fff;
+		text-decoration: none;
+	}
+
+	.sub-title {
+		margin-bottom: 0;
+	}
+
+	.main-title a:hover {
+		font-weight: bold;
+	}
+
+	.content {
+		margin-top: 1rem;
+	}
+
+.simple-form .input-group{
+	width: 100%;
+	margin-bottom: 1rem;
+}
+
+.no-mt{
+	margin-top: 0;
+}
