@@ -8,20 +8,22 @@
 				<thead>
 					<tr>
 						<th>Nama Worker</th>
+						<th>No. Telephone</th>
+						<th>Email</th>
 						<th>Rating</th>
 						<th>Action</th>
 					</tr>
 				</thead>
 
 				<tbody>
+				<% allWorkers.forEach( function(worker, index) { %>
 					<tr>
-						<td>Andi Tsung</td>
+						<td><%= worker.fullname %></td>
+						<td><%= worker.phone %></td>
+						<td><%= worker.email %></td>
 						<td>
 							<div class="rating-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
+								<%- Helper.getStars(worker.averagerating); %>
 							</div><!-- /.rating-star -->
 						</td>
 						<td>
@@ -29,37 +31,7 @@
 							<a href="/test/admin/workers/delete/1">Delete</a>
 						</td>
 					</tr>
-
-					<tr>
-						<td>Jenna Kow</td>
-						<td>
-							<div class="rating-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div><!-- /.rating-star -->
-						</td>
-						<td>
-							<a href="/test/admin/workers/edit/1">Edit</a>
-							<a href="/test/admin/workers/delete/1">Delete</a>
-						</td>
-					</tr>
-
-					<tr>
-						<td>John Mcronald</td>
-						<td>
-							<div class="rating-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div><!-- /.rating-star -->
-						</td>
-						<td>
-							<a href="/test/admin/workers/edit/1">Edit</a>
-							<a href="/test/admin/workers/delete/1">Delete</a>
-						</td>
-					</tr>
+				<% }); %>
 				</tbody>
 			</table>
 			<a href="/test/admin/workers/add" class="btn btn-info">Add Worker</a>

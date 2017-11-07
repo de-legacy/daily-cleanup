@@ -18,31 +18,20 @@
 				</thead>
 
 				<tbody>
-					<tr>
-						<td>Ahmad Bin Talal</td>
-						<td>0817266290</td>
-						<td>mad22@mail.com</td>
-						<td>Jl. Ciputar no 25</td>
-						<td>zen667</td>
-						<td>0</td>
-						<td>
-							<a href="/test/admin/users/edit/1">Edit</a>
-							<a href="/test/admin/users/delete/1">Delete</a>
-						</td>
-					</tr>
-
-					<tr>
-						<td>Septian Fujia</td>
-						<td>09817261011</td>
-						<td>savet@mail.com</td>
-						<td>Jl. Markopolo no 25</td>
-						<td>marko22</td>
-						<td>1</td>
-						<td>
-							<a href="/test/admin/users/edit/2">Edit</a>
-							<a href="/test/admin/users/delete/2">Delete</a>
-						</td>
-					</tr>
+					<% allUsers.forEach( function(user, index) { %>
+						<tr>
+							<td><%= user.fullname %></td>
+							<td><%= user.phone %></td>
+							<td><%= user.email %></td>
+							<td><%= user.address %></td>
+							<td><%= user.username %></td>
+							<td><%= user.privelege %></td>
+							<td>
+								<a href="/test/admin/users/edit/<%= user.id %>">Edit</a>
+								<a href="/test/admin/users/delete/<%= user.id %>">Delete</a>
+							</td>
+						</tr>
+					<% }); %>
 				</tbody>
 			</table>
 

@@ -9,11 +9,15 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const User = require("./routers/user")
+const Admin = require("./routers/admin")
+
 // const Order = require("./routers/order")
 // const Worker = require("./routers/Worker")
 
+app.locals.Helper = require('./helpers/helper');
 
 app.use('/user', User)
+app.use('/admin', Admin)
 // app.use('/order', Order)
 // app.use('/worker', Worker)
 
