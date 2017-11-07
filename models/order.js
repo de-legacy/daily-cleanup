@@ -6,7 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     rating: DataTypes.INTEGER,
     message: DataTypes.STRING
   });
+
+  Order.associate = function(models){
+    Order.belongsTo(models.Worker);
     Order.belongsTo(models.User);
-    Order.belongsTo(models.Worker);  
+  }   
+  
   return Order;
 };

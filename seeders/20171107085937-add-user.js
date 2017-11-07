@@ -10,7 +10,9 @@ module.exports = {
       email     : 'matt.syahab@gmail.com',
       username  : 'admin',
       password  : 'admin',
-      privilege : '0'
+      privelege : 0,
+      createdAt : new Date(),
+      updatedAt : new Date()
       },
       {
       fullname  : 'Septian Fujianto',
@@ -19,7 +21,9 @@ module.exports = {
       email     : 'SeptianFuji@gmail.com',
       username  : 'septian',
       password  : 'septian',
-      privilege : '1'
+      privelege : 1,
+      createdAt : new Date(),
+      updatedAt : new Date()      
       }], {})
   },
 

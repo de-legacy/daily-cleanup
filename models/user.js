@@ -27,11 +27,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     username: DataTypes.STRING,
     password: DataTypes.STRING,
-    privilege: DataTypes.INTEGER,
+    privelege: DataTypes.INTEGER
   });
-  Worker.associate = function(models){
-    User.belongsToMany(models.Worker, {through : "Order"})
-    User.hasMany(models.Worker);
-  }  
+
+  User.associate = function(models){
+    User.belongsToMany(models.Worker, {through : 'Order'})
+    User.hasMany(models.Order);
+  }
+    
   return User;
 };

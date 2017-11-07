@@ -26,9 +26,9 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      privilege: {
+      privelege: {
         type: Sequelize.INTEGER
-      },      
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

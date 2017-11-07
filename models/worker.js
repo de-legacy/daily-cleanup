@@ -26,9 +26,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     averagerating: DataTypes.FLOAT
   });
+
   Worker.associate = function(models){
-    Worker.belongsToMany(models.User, {through : "Order"})
+    Worker.belongsToMany(models.User, {through : 'Order'})
     Worker.hasMany(models.Order);
   }
+
   return Worker;
 };
