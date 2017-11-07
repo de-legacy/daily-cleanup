@@ -14,24 +14,15 @@
 				</thead>
 
 				<tbody>
+					<% orders.forEach (order => {%>
 					<tr>
-						<td>Andi Tsung</td>
-						<td>22/11/2017</td>
+						<td><%= order.Worker.fullname %></td>
+						<td><%= order.createdAt %></td>
 						</td>
-						<td><a href="/test/user/order-complete">Order selesai</a></td>
+						<td><a href="/user/order-complete/<%= order.id %>">Order selesai</a></td>
 					</tr>
+					<%})%>
 
-					<tr>
-						<td>Jenna Kow</td>
-						<td>23/11/2017</td>
-						<td>Selesai</td>
-					</tr>
-
-					<tr>
-						<td>John Mcronald</td>
-						<td>24/11/2017</td>
-						<td><a href="/test/user/order-complete">Order selesai</a></td>
-					</tr>
 				</tbody>
 			</table>
 

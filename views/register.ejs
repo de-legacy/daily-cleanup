@@ -5,15 +5,15 @@
 			<div class="col-md-6 col-md-offset-3 simple-form">
 				<h3 class="no-mt">Buat Akun Baru</h3><!-- /.no-mt -->
 
-				<form action="/login" method="POST">
+				<form action="/register" method="POST">
 					<div class="input-group">
 						<label>Nama Lengkap</label>
-						<input type="text" class="form-control" placeholder="Nama" name="fullName" id="fullName">
+						<input type="text" class="form-control" placeholder="Nama" name="fullname" id="fullName">
 					</div>
 
 					<div class="input-group">
 						<label>No. Handphone</label>
-						<input type="tel" class="form-control" placeholder="Phone" name="phoneNumber" id="phoneNumber">
+						<input type="tel" class="form-control" placeholder="Phone" name="phone" id="phoneNumber">
 					</div>
 
 					<div class="input-group">
@@ -38,6 +38,7 @@
 
 					<div class="row">
 						<div class="col-md-6">
+								<input type="hidden" name="privelege" value='1'>
 								<input class="btn btn-info" type="submit" value="Daftar" />
 						</div><!-- /.col-md-6 -->
 					</div><!-- /.ta-right -->

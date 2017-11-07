@@ -5,71 +5,76 @@ const bcrypt		= require('bcrypt');
 
 
 const Model = require("../models")
+const checklogin = require ("../helpers/checklogin")
 
 
 // Home User
 
-router.get('/', function(req,res) {
-	Model.User.findAll().then(allUser => {
-		res.render('home', {allUser : allUser })
+router.get('/list-workers', checklogin, (req,res) => {
+	Model.Worker.findAll().then(allWorker => {
+		res.render('list-workers', {allWorker : allWorker})
 	})
 })
 
-//CREATE USER
-router.get('/add', function(req,res) {
-	res.render('add')
-})
-
-
-router.post('/add', function(req,res) {
-	Model.User.create(req.body).then(() => {
-		res.redirect('/user')
-	})
-})
-
-//EDIT USER
-router.get('/edit/:id', function(req,res) {
+router.get('/order-services/:id', checklogin, (req, res) => {
 	Model.User.findOne({
 		where : {
-			id : req.params.id
+			username : req.session.username
 		}
-	}).then(edited => {
-		res.render('edit', {edit : edited} )
+	}).then(user => {
+		Model.Order.create({
+			UserId : user.id,
+			WorkerId : req.params.id
+		}).then(() => {
+			res.render('thankyou', {title: 'Terima kasih atas pesanannya', content: 'Silahkan cek pesanan anda pada link dibawah', link: user.id});
+		})
 	})
 })
 
-router.post('/edit/:id', function(req,res) {
-	Model.User.update({
-		fullname : req.body.fullname,
-		address	 : req.body.address,
-		phone	 : req.body.phone,
-		email	 : req.body.email,
-		username : req.body.username,
-		password : req.body.password,
-		privelege: req.body.privelege
-	}, {
+
+router.get('/orders', checklogin, (req,res) => {
+	Model.User.findOne({
 		where : {
-			id : req.params.id
+			username : req.session.username
 		}
-	}).then(() => {
-		res.redirect('/user')
-	}).catch(err => {
+	}).then(user => {
+		res.redirect(`/user/orders/${user.id}`)
+	})
+	.catch(err => {
 		res.send(err);
 	})
 })
 
-//DELETE USER
 
-router.get('/delete/:id', function(req,res) {
-	Model.User.destroy({
+router.get('/orders/:id', checklogin, (req, res) => {
+	Model.Order.findAll({
+		attributes : ['id', 'UserId', 'WorkerId', 'rating', 'message', 'createdAt', 'updatedAt', 'status'],
+		include : [Model.User,Model.Worker],
 		where : {
-			id : req.params.id
+			UserId : req.params.id
 		}
-	}).then(() => {
-		res.redirect('/user')
-	}).catch(err => {
-		res.send(err);
+	}).then(userOrder => {
+		res.render('list-orders', {orders : userOrder});
 	})
 })
+
+router.get('/order-complete/:id', checklogin, (req, res) => {
+	res.render('order-complete-form', {order : req.params.id});
+})
+
+router.post('/order-complete/:id', checklogin, (req, res) => {
+	Model.Order.update({
+		message: req.body.message,
+		rating: req.body.rating,
+		status: "true"
+	}, { where : {
+		id : req.params.id
+	}}).then(() => {
+		res.send("SUKSES")
+	}).catch(err => {
+		res.send("GAGAL")
+	})
+})
+
 
 module.exports = router;
