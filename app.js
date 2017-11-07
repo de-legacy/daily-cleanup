@@ -19,7 +19,7 @@ app.get('/test/login', (req, res) => {
 })
 
 app.post('/test/login', (req, res) => {
-	res.redirect('/test/thankyou');
+	res.redirect('/test/pemesanan');
 })
 
 app.get('/test/register', (req, res) => {
