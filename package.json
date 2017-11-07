@@ -1,8 +1,8 @@
 {
   "name": "daily-cleanup",
   "version": "1.0.0",
-  "description": "pairProject",
-  "main": "index.js",
+  "description": "Pair project Hacktiv8 Phase 1",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,7 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/fujianto/daily-cleanup.git"
   },
-  "author": "",
+  "keywords": [
+    "express",
+    "nodejs"
+  ],
+  "author": "Septian, Ahmad",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fujianto/daily-cleanup/issues"
