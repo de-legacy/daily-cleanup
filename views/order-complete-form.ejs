@@ -7,16 +7,16 @@
 			<h3 class="no-mt">Terima kasih atas Pesanan Anda</h3><!-- /.no-mt -->
 			<p>Harap tinggalkan rating dan pesan untuk Andy sebelum Order selesai</p>
 
-			<form action="/test/user/order-complete" method="POST">
+			<form action="/user/order-complete/<%= order %>" method="POST">
 				<div class="input-group">
 					<label>Review</label>
-					<textarea class="form-control" name="userReview" id="userReview" cols="30" rows="10"></textarea>
+					<textarea class="form-control" name="message" id="userReview" cols="30" rows="10"></textarea>
 				</div>
 
 				<div class="input-group">
 					<label>Rating</label>
 					<div id="rateYo"></div>
-					<input type="hidden" value="1" name="workerRating" id="workerRating">
+					<input type="hidden" value="1" name="rating" id="workerRating">
 				</div>
 
 				<div class="row">

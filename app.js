@@ -1,42 +1,31 @@
 const express = require('express');
 const app = express();
-var bodyParser = require('body-parser')
+const bodyParser = require('body-parser')
+const session = require('express-session')
 
 app.use(express.static(__dirname + '/library'));
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+app.use(session({
+	secret: "successlogged"
+}))
 
-const User = require("./routers/user")
+
+const Index = require("./routers/index")
+const User	= require("./routers/user")
 const Admin = require("./routers/admin")
-
 // const Order = require("./routers/order")
 // const Worker = require("./routers/Worker")
 
 app.locals.Helper = require('./helpers/helper');
-
+app.use('/', Index)
 app.use('/user', User)
 app.use('/admin', Admin)
 // app.use('/order', Order)
 // app.use('/worker', Worker)
 
-
-app.get('/', (req, res) => {
-	res.render('index');
-})
-
-app.get('/test/login', (req, res) => {
-	res.render('login');
-})
-
-app.post('/test/login', (req, res) => {
-	res.redirect('/test/pemesanan');
-})
-
-app.get('/test/register', (req, res) => {
-	res.render('register');
-})
 
 app.get('/test/top-workers', (req, res) => {
 	res.render('top-workers');
@@ -48,26 +37,6 @@ app.get('/test/thankyou', (req, res) => {
 
 app.get('/test/pemesanan', (req, res) => {
 	res.render('list-workers');
-})
-
-app.get('/test/order-services', (req, res) => {
-	res.render('thankyou', {title: 'Terima kasih atas pesanannya', content: 'Silahkan cek pesanan anda pada link dibawah', link: '/test/user/orders'});
-})
-
-app.get('/test/user/orders', (req, res) => {
-	res.render('list-orders');
-})
-
-app.get('/test/user/order-complete', (req, res) => {
-	res.render('order-complete-form');
-})
-
-app.post('/test/user/order-complete', (req, res) => {
-	res.send(req.body);
-})
-
-app.get('/test/admin/users', (req, res) => {
-	res.render('admin/all-users');
 })
 
 app.get('/test/admin/workers', (req, res) => {
@@ -90,4 +59,4 @@ app.get('/test/admin/users/edit/:userId', (req, res) => {
 	res.render('admin/add-user');
 })
 
-app.listen(3001, () => console.log('Example app listening on port 3000!'))
+app.listen(3000, () => console.log('Example app listening on port 3000!'))

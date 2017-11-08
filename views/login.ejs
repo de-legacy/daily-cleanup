@@ -5,7 +5,7 @@
 			<div class="col-md-6 col-md-offset-3 simple-form">
 				<h3 class="no-mt">Login</h3><!-- /.no-mt -->
 
-				<form action="/test/login" method="POST">
+				<form action="/login" method="POST">
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Username" name="username" id="username">
 					</div>
@@ -22,7 +22,7 @@
 						</div><!-- /.col-md-6 -->
 
 						<div class="col-md-6 text-right">
-							<a href="/test/register" class="btn btn-warning">Buat Akun Baru</a>
+							<a href="/register" class="btn btn-warning">Buat Akun Baru</a>
 						</div><!-- /.col-md-6 -->
 					</div><!-- /.ta-right -->
 				</form>
@@ -30,4 +30,10 @@
 		</div><!-- /.row -->
 	</main>
 
+  <script>
+    <% if(error){ %>
+      alert('Cant login with that Username or Password')
+    <% } %>
+  </script>
+  
 <%- include('partials/footer') %>

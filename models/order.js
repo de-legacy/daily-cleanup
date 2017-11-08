@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     UserId: DataTypes.INTEGER,
     WorkerId: DataTypes.INTEGER,
     rating: DataTypes.INTEGER,
-    message: DataTypes.STRING
+    message: DataTypes.STRING,
+    status: DataTypes.BOOLEAN
   });
 
   Order.associate = function(models){
