@@ -66,7 +66,7 @@ router.post('/order-complete/:id', checklogin, (req, res) => {
 	Model.Order.update({
 		message: req.body.message,
 		rating: req.body.rating,
-		status: "true"
+		status: true
 	}, { where : {
 		id : req.params.id
 	}}).then(() => {
