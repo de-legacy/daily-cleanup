@@ -1,19 +1,31 @@
-<%- include('../partials/header', {title: 'Admin: Add Worker'})  %>
+<%- include('../partials/header', {title: 'Admin: Add Worker', loggedIn: loggedIn, privelege: privelege})  %>
 
 <main class="content">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 simple-form">
-				<h3 class="no-mt">Add Worker</h3><!-- /.no-mt -->
+				<h3 class="no-mt">Manage Worker</h3><!-- /.no-mt -->
 
-				<form action="/test/admin/workers/add" method="POST">
+				<form action="<%= (typeof editedWorker !== 'undefined' && editedWorker !== null ? `/admin/workers/edit/${editedWorker.id}` : '/admin/workers/add' ) %>" method="POST">
+						<input type="hidden" class="form-control" name="WorkerId" id="WorkerId" value="<%= (typeof editedWorker !== 'undefined' && editedWorker !== null) ? editedWorker.id : '' %>">
+
 					<div class="input-group">
 						<label>Nama Worker</label>
-						<input type="text" class="form-control" placeholder="Name" name="name" id="name">
+						<input type="text" class="form-control" placeholder="Name" name="fullname" id="fullname" value="<%= (typeof editedWorker !== 'undefined' && editedWorker !== null) ? editedWorker.fullname : '' %>">
+					</div>
+
+					<div class="input-group">
+						<label>No. Telephone</label>
+						<input type="tel" class="form-control" placeholder="Phone" name="phone" id="phone" value="<%= (typeof editedWorker !== 'undefined' && editedWorker !== null) ? editedWorker.phone : '' %>">
+					</div>
+
+					<div class="input-group">
+						<label>Email</label>
+						<input type="email" class="form-control" placeholder="Email" name="email" id="email" value="<%= (typeof editedWorker !== 'undefined' && editedWorker !== null) ? editedWorker.email : '' %>">
 					</div>
 
 					<div class="input-group">
 						<label>Rating</label>
-						<input type="text" class="form-control" placeholder="Rating" name="workerRating" id="workerRating">
+						<input type="text" class="form-control" placeholder="Rating" name="averagerating" id="averagerating" value="<%= (typeof editedWorker !== 'undefined' && editedWorker !== null) ? editedWorker.averagerating : '' %>">
 					</div>
 
 					<div class="row">

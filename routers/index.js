@@ -26,6 +26,7 @@ router.post('/login', (req, res) => {
 					req.session.loggedIn = true
 					req.session.username = user.username
 					req.session.idUser   = user.id
+					req.session.privelege   = user.privelege
 					res.redirect('/user/list-workers')
 				}else{
 					res.render('login', {error: true})

@@ -1,4 +1,4 @@
-<%- include('../partials/header', {title: 'Admin: All Workers'})  %>
+<%- include('../partials/header', {title: 'Admin: All Workers', loggedIn: loggedIn, privelege: privelege})  %>
 
 <main class="content">
 	<div class="row">
@@ -7,6 +7,7 @@
 			<table class="table">
 				<thead>
 					<tr>
+						<!-- <th>Avatar</th> -->
 						<th>Nama Worker</th>
 						<th>No. Telephone</th>
 						<th>Email</th>
@@ -18,6 +19,7 @@
 				<tbody>
 				<% allWorkers.forEach( function(worker, index) { %>
 					<tr>
+						<!-- <td><img src="https://placeimg.com/100/100/people" alt="worker" /></td> -->
 						<td><%= worker.fullname %></td>
 						<td><%= worker.phone %></td>
 						<td><%= worker.email %></td>
@@ -27,14 +29,14 @@
 							</div><!-- /.rating-star -->
 						</td>
 						<td>
-							<a href="/test/admin/workers/edit/<%= worker.id %>">Edit</a>
-							<a href="/test/admin/workers/delete/<%= worker.id %>">Delete</a>
+							<a href="/admin/workers/edit/<%= worker.id %>">Edit</a>
+							<a href="/admin/workers/delete/<%= worker.id %>">Delete</a>
 						</td>
 					</tr>
 				<% }); %>
 				</tbody>
 			</table>
-			<a href="/test/admin/workers/add" class="btn btn-info">Add Worker</a>
+			<a href="/admin/workers/add" class="btn btn-info">Add Worker</a>
 
 		</div><!-- /.col-md-12 -->
 	</div><!-- /.row -->

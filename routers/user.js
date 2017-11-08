@@ -12,7 +12,7 @@ const checklogin = require ("../helpers/checklogin")
 
 router.get('/list-workers', checklogin, (req,res) => {
 	Model.Worker.findAll().then(allWorker => {
-		res.render('list-workers', {allWorker : allWorker})
+		res.render('list-workers', {allWorker : allWorker, loggedIn: req.session.loggedIn, privelege: req.session.privelege})
 	})
 })
 
@@ -26,7 +26,7 @@ router.get('/order-services/:id', checklogin, (req, res) => {
 			UserId : user.id,
 			WorkerId : req.params.id
 		}).then(() => {
-			res.render('thankyou', {title: 'Terima kasih atas pesanannya', content: 'Silahkan cek pesanan anda pada link dibawah', link: user.id});
+			res.render('thankyou', {title: 'Terima kasih atas pesanannya', content: 'Silahkan cek pesanan anda pada link dibawah', link: user.id, loggedIn: req.session.loggedIn, privelege: req.session.privelege});
 		})
 	})
 })
@@ -54,12 +54,12 @@ router.get('/orders/:id', checklogin, (req, res) => {
 			UserId : req.params.id
 		}
 	}).then(userOrder => {
-		res.render('list-orders', {orders : userOrder});
+		res.render('list-orders', {orders : userOrder, loggedIn: req.session.loggedIn, privelege: req.session.privelege});
 	})
 })
 
 router.get('/order-complete/:id', checklogin, (req, res) => {
-	res.render('order-complete-form', {order : req.params.id});
+	res.render('order-complete-form', {order : req.params.id, loggedIn: req.session.loggedIn, privelege: req.session.privelege});
 })
 
 router.post('/order-complete/:id', checklogin, (req, res) => {

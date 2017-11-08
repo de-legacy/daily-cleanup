@@ -47,9 +47,9 @@ app.get('/test/admin/workers/banned', (req, res) => {
 	res.render('admin/all-banned-workers');
 })
 
-app.get('/test/admin/workers/add', (req, res) => {
-	res.render('admin/add-worker');
-})
+// app.get('/test/admin/workers/add', (req, res) => {
+// 	res.render('admin/add-worker');
+// })
 
 app.get('/test/admin/workers/edit/:workerId', (req, res) => {
 	res.render('admin/add-worker');
