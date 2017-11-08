@@ -19,9 +19,7 @@
 						<td>
 
 							<div class="rating-star">
-								<% for(let i=0 ; i<worker.averagerating ; i++){%>
-								<i class="fa fa-star"></i>
-								<% } %>
+							<%- Helper.getStars(worker.averagerating); %>
 							</div>
 						</td>
 						<td><a href="/user/order-services/<%= worker.id %>">Pesan</a></td>

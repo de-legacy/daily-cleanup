@@ -3,7 +3,7 @@
 <main class="content">
 	<div class="row">
 		<div class="col-md-12">
-
+			<h3 class="no-mt">Top Workers</h3><!-- /.no-mt -->
 			<table class="table">
 				<thead>
 					<tr>
@@ -17,9 +17,7 @@
 						<td><%= worker.fullname %></td>
 						<td>
 							<div class="rating-star">
-							<% for (let i =0 ; i< worker.averagerating ; i++) {%>		
-								<i class="fa fa-star"></i> 
-							<% } %>
+								<%- Helper.getStars(worker.averagerating); %>
 							</div>
 						</td>
 					</tr>

@@ -66,7 +66,7 @@ router.post('/register', function(req,res) {
 			res.render('login', {error: true , message : 'Username Already Used'})
 		}
 	}).catch(err => {
-		res.render('login', {error: true , message : 'Email Already Used'})		
+		res.render('login', {error: true , message : 'Email Already Used'})
 	})
 })
 
@@ -74,11 +74,17 @@ router.post('/register', function(req,res) {
 //TOP Worker
 
 router.get('/top-workers', (req, res) => {
-	Model.Worker.findAll().then(allWorker => {
-		res.render('top-workers', {allWorker : allWorker});	
+	Model.Worker.findAll({
+		where: {
+			averagerating: {
+				gte : 3
+			}
+		}
+	}).then(allWorker => {
+		res.render('top-workers', {allWorker : allWorker});
 	}).catch(err => {
 		res.send(err);
 	})
-	
+
 })
 module.exports = router;
