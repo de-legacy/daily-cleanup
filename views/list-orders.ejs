@@ -18,8 +18,11 @@
 					<tr>
 						<td><%= order.Worker.fullname %></td>
 						<td><%= order.createdAt %></td>
-						</td>
+						<% if (order.status) {%>
+							<td> SELESAI </td>
+						<%}else{%>
 						<td><a href="/user/order-complete/<%= order.id %>">Order selesai</a></td>
+						<%}%>
 					</tr>
 					<%})%>
 

@@ -34,7 +34,11 @@
 
   <script>
     <% if(error){ %>
+    	<% if(message != undefined) {%>
+      alert("<%= message %> ")
+    	<% }else{ %>	
       alert('Cant login with that Username or Password')
+      	<% } %>
     <% } %>
   </script>
 

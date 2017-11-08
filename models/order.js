@@ -1,6 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Order = sequelize.define('Order', {
+    id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: DataTypes.INTEGER
+    },    
     UserId: DataTypes.INTEGER,
     WorkerId: DataTypes.INTEGER,
     rating: DataTypes.INTEGER,

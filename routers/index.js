@@ -5,12 +5,13 @@ const bcrypt		= require('bcrypt');
 
 const Model = require("../models")
 const checklogin = require ("../helpers/checklogin")
+const checksession = require ("../helpers/checksession")
 
 router.get('/', (req, res) => {
 	res.render('index');
 })
 
-router.get('/login', (req, res) => {
+router.get('/login', checksession , (req, res) => {
 	res.render('login', {error: false});
 })
 
@@ -21,6 +22,7 @@ router.get('/logout', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
+
 	Model.User.findOne({
 		where : {
 			username : req.body.username
@@ -35,11 +37,11 @@ router.post('/login', (req, res) => {
 					req.session.privelege   = user.privelege
 					res.redirect('/user/list-workers')
 				}else{
-					res.render('login', {error: true})
+					res.render('login', {error: true, message : undefined})
 				}
 			})
 		}else{
-			res.render('login', {error: true})
+			res.render('login', {error: true , message : undefined})
 		}
 	})
 
@@ -53,9 +55,28 @@ router.get('/register', function(req,res) {
 
 
 router.post('/register', function(req,res) {
-	Model.User.create(req.body).then(() => {
-		res.render('login', {message: 'Sukses membuat Akun', error: false})
+	Model.User.findOne({where : {
+		username : req.body.username
+	}}).then(edit => {
+		if(edit.length = 0 ){
+			Model.User.create(req.body).then(() => {
+				res.render('login', {message: 'Sukses membuat Akun', error: false})
+			})
+		}else{
+			res.render('login', {error: true , message : 'Username Already Used'})
+		}
 	})
 })
 
+
+//TOP Worker
+
+router.get('/top-workers', (req, res) => {
+	Model.Worker.findAll().then(allWorker => {
+		res.render('top-workers', {allWorker : allWorker});	
+	}).catch(err => {
+		res.send(err);
+	})
+	
+})
 module.exports = router;

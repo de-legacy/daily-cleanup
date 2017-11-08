@@ -37,13 +37,21 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Order);
   }
 
+  User.beforeUpdate((user, options) => {
+    const saltRounds = 10;
+    const myPlaintextPassword = user.password;
+    return  bcrypt.hash(myPlaintextPassword, saltRounds).then(function(hash) {
+      user.password = hash
+    });
+  });  
+
   User.beforeCreate((user, options) => {
     const saltRounds = 10;
     const myPlaintextPassword = user.password;
     return  bcrypt.hash(myPlaintextPassword, saltRounds).then(function(hash) {
       user.password = hash
     });
-  });
-
+  });  
+  
   return User;
 };

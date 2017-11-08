@@ -9,61 +9,23 @@
 					<tr>
 						<th>Nama Worker</th>
 						<th>Rating</th>
-						<th>Action</th>
 					</tr>
 				</thead>
-
 				<tbody>
+					<% allWorker.forEach(worker => {%>
 					<tr>
-						<td>Andi Tsung</td>
+						<td><%= worker.fullname %></td>
 						<td>
 							<div class="rating-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div><!-- /.rating-star -->
-						</td>
-						<td>
-							<a href="/test/admin/workers/edit/1">Edit</a>
-							<a href="/test/admin/workers/delete/1">Delete</a>
+							<% for (let i =0 ; i< worker.averagerating ; i++) {%>		
+								<i class="fa fa-star"></i> 
+							<% } %>
+							</div>
 						</td>
 					</tr>
-
-					<tr>
-						<td>Jenna Kow</td>
-						<td>
-							<div class="rating-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div><!-- /.rating-star -->
-						</td>
-						<td>
-							<a href="/test/admin/workers/edit/1">Edit</a>
-							<a href="/test/admin/workers/delete/1">Delete</a>
-						</td>
-					</tr>
-
-					<tr>
-						<td>John Mcronald</td>
-						<td>
-							<div class="rating-star">
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-								<i class="fa fa-star"></i>
-							</div><!-- /.rating-star -->
-						</td>
-						<td>
-							<a href="/test/admin/workers/edit/1">Edit</a>
-							<a href="/test/admin/workers/delete/1">Delete</a>
-						</td>
-					</tr>
+					<% }) %>
 				</tbody>
 			</table>
-			<a href="/tes/admin/workers/add" class="btn btn-info">Add Worker</a>
-
 		</div><!-- /.col-md-12 -->
 	</div><!-- /.row -->
 </main><!-- /.content -->

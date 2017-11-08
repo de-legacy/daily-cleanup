@@ -55,22 +55,24 @@ router.get('/edit/:id', checklogin, function(req,res) {
 })
 
 router.post('/edit/:id', checklogin, function(req,res) {
-	Model.User.update({
-		fullname : req.body.fullname,
-		address	 : req.body.address,
-		phone	 : req.body.phone,
-		email	 : req.body.email,
-		username : req.body.username,
-		password : req.body.password,
-		privelege: req.body.privelege
-	}, {
+	Model.User.findOne({
 		where : {
 			id : req.params.id
 		}
-	}).then(() => {
-		res.redirect('/admin/users')
-	}).catch(err => {
-		res.send(err);
+	}).then(edit => {
+		edit.update({
+			fullname : req.body.fullname,
+			address	 : req.body.address,
+			phone	 : req.body.phone,
+			email	 : req.body.email,
+			username : req.body.username,
+			password : req.body.password,
+			privelege: req.body.privelege
+		}).then(() => {
+			res.redirect('/admin/users')
+		}).catch(err => {
+			res.send(err);	
+		})
 	})
 })
 
@@ -96,25 +98,25 @@ router.post('/workers/add', checklogin, (req, res) => {
 
 router.get('/workers/edit/:workerId', checklogin, (req, res) => {
 	Model.Worker.findById(req.params.workerId)
-		.then(worker => {
-			res.render('admin/add-worker', {editedWorker: worker, loggedIn: req.session.loggedIn, privelege: req.session.privelege});
+	.then(worker => {
+		res.render('admin/add-worker', {editedWorker: worker, loggedIn: req.session.loggedIn, privelege: req.session.privelege});
 
-		}).catch(err => res.send(err.message));
+	}).catch(err => res.send(err.message));
 });
 
 router.post('/workers/edit/:workerId', checklogin, (req, res) => {
 	Model.Worker.update(
-		{
-	    fullname: req.body.fullname,
-	    phone: req.body.phone,
-	    email: req.body.email,
-	    averagerating: +req.body.averagerating
-	  },
-		{
-			where: {
-				id: req.body.WorkerId
-			}
+	{
+		fullname: req.body.fullname,
+		phone: req.body.phone,
+		email: req.body.email,
+		averagerating: +req.body.averagerating
+	},
+	{
+		where: {
+			id: req.body.WorkerId
 		}
+	}
 	).then(success => {
 		res.redirect('/admin/workers');
 
@@ -136,17 +138,17 @@ router.get('/workers/delete/:workerId', checklogin, (req, res) => {
 // Banned Worker
 router.get('/workers/banned', checklogin, (req, res) => {
 	Model.Worker.findAll(
-			{
-				where: {
-					averagerating: {
-						lte: 3
-					}
-				}
+	{
+		where: {
+			averagerating: {
+				lte: 3
 			}
-		)
-		.then(allBannedWorkers => {
-			res.render('admin/banned-workers', {allWorkers : allBannedWorkers, loggedIn: req.session.loggedIn, privelege: req.session.privelege });
-		}).catch(err => res.send(err.message));
+		}
+	}
+	)
+	.then(allBannedWorkers => {
+		res.render('admin/banned-workers', {allWorkers : allBannedWorkers, loggedIn: req.session.loggedIn, privelege: req.session.privelege });
+	}).catch(err => res.send(err.message));
 });
 
 module.exports = router;
