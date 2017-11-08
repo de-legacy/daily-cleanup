@@ -45,7 +45,6 @@ router.get('/orders', checklogin, (req,res) => {
 	})
 })
 
-
 router.get('/orders/:id', checklogin, (req, res) => {
 	Model.Order.findAll({
 		attributes : ['id', 'UserId', 'WorkerId', 'rating', 'message', 'createdAt', 'updatedAt', 'status'],

@@ -14,6 +14,12 @@ router.get('/login', (req, res) => {
 	res.render('login', {error: false});
 })
 
+router.get('/logout', (req, res) => {
+	req.session.destroy(function(err){
+			res.render('login', {message: "Logout success", error: false});
+	})
+})
+
 router.post('/login', (req, res) => {
 	Model.User.findOne({
 		where : {
