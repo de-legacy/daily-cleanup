@@ -55,24 +55,25 @@ router.get('/edit/:id', checklogin, function(req,res) {
 })
 
 router.post('/edit/:id', checklogin, function(req,res) {
-	console.log(req.body)
-	Model.User.update({
-		fullname : req.body.fullname,
-		address	 : req.body.address,
-		phone	 : req.body.phone,
-		email	 : req.body.email,
-		username : req.body.username,
-		password : req.body.password,
-		privelege: req.body.privelege
-	}, {
+	Model.User.findOne({
 		where : {
 			id : req.params.id
 		}
+	}).then(edit => {
+		edit.update({
+			fullname : req.body.fullname,
+			address	 : req.body.address,
+			phone	 : req.body.phone,
+			email	 : req.body.email,
+			username : req.body.username,
+			password : req.body.password,
+			privelege: req.body.privelege
 	}).then(() => {
 		res.redirect('/admin/users')
 	}).catch(err => {
-		res.send(err);
+		res.send(err);	
 	})
+})
 })
 
 module.exports = router;

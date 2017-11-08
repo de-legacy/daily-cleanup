@@ -24,7 +24,8 @@ router.get('/order-services/:id', checklogin, (req, res) => {
 	}).then(user => {
 		Model.Order.create({
 			UserId : user.id,
-			WorkerId : req.params.id
+			WorkerId : req.params.id,
+			rating : 0
 		}).then(() => {
 			res.render('thankyou', {title: 'Terima kasih atas pesanannya', content: 'Silahkan cek pesanan anda pada link dibawah', link: user.id});
 		})
@@ -59,7 +60,13 @@ router.get('/orders/:id', checklogin, (req, res) => {
 })
 
 router.get('/order-complete/:id', checklogin, (req, res) => {
-	res.render('order-complete-form', {order : req.params.id});
+	Model.Order.findOne({
+		where : {
+			id : req.params.id
+		}
+	}).then(worker => {
+		res.render('order-complete-form', {order : worker});
+	})
 })
 
 router.post('/order-complete/:id', checklogin, (req, res) => {
@@ -70,11 +77,21 @@ router.post('/order-complete/:id', checklogin, (req, res) => {
 	}, { where : {
 		id : req.params.id
 	}}).then(() => {
-		res.send("SUKSES")
-	}).catch(err => {
-		res.send("GAGAL")
+		Model.Order.findOne({
+			where : {
+				WorkerId : req.body.WorkerId
+			},
+			attributes: ['WorkerId', [Model.sequelize.fn('AVG', Model.sequelize.col('rating')), 'average']],
+			group: 'WorkerId'
+		}).then(avg => {
+			Model.Worker.update({
+				averagerating : avg.dataValues.average
+			}, {where : {
+				id : avg.WorkerId
+			}}).then(() => {
+				res.redirect('/user/list-workers')
+			})
+		})
 	})
-})
-
-
+})	
 module.exports = router;

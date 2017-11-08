@@ -27,9 +27,9 @@ app.use('/admin', Admin)
 // app.use('/worker', Worker)
 
 
-app.get('/test/top-workers', (req, res) => {
-	res.render('top-workers');
-})
+// app.get('/test/top-workers', (req, res) => {
+// 	res.render('top-workers');
+// })
 
 app.get('/test/thankyou', (req, res) => {
 	res.render('thankyou', {title: 'Terima kasih telah bergabung', content: 'Silahkan mulai melakukan pemesanan pada link dibawah', link: '/test/pemesanan'});

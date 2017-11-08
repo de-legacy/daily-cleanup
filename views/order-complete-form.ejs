@@ -7,7 +7,7 @@
 			<h3 class="no-mt">Terima kasih atas Pesanan Anda</h3><!-- /.no-mt -->
 			<p>Harap tinggalkan rating dan pesan untuk Andy sebelum Order selesai</p>
 
-			<form action="/user/order-complete/<%= order %>" method="POST">
+			<form action="/user/order-complete/<%= order.id %>" method="POST">
 				<div class="input-group">
 					<label>Review</label>
 					<textarea class="form-control" name="message" id="userReview" cols="30" rows="10"></textarea>
@@ -21,6 +21,7 @@
 
 				<div class="row">
 					<div class="col-md-6">
+						<input type="hidden" name="WorkerId" value="<%= order.WorkerId %>">
 						<input class="btn btn-info" type="submit" value="Kirim" />
 					</div><!-- /.col-md-6 -->
 				</div><!-- /.ta-right -->
