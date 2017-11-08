@@ -35,7 +35,7 @@ router.post('/login', (req, res) => {
 			res.render('login', {error: true})
 		}
 	})
-	
+
 })
 
 //CREATE USER
