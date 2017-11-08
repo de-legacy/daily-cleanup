@@ -65,6 +65,8 @@ router.post('/register', function(req,res) {
 		}else{
 			res.render('login', {error: true , message : 'Username Already Used'})
 		}
+	}).catch(err => {
+		res.render('login', {error: true , message : 'Email Already Used'})		
 	})
 })
 
