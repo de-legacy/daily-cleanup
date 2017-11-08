@@ -47,7 +47,7 @@ router.get('/register', function(req,res) {
 
 router.post('/register', function(req,res) {
 	Model.User.create(req.body).then(() => {
-		res.render('login')
+		res.redirect('/login')
 	})
 })
 
