@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
           })
           .then(foundEmail => {
             if(foundEmail.length > 0 ){
-              return next("Email Already Register")
+              return next("Email Already Registered")
             }else{
               next();
             }
@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
     return  bcrypt.hash(myPlaintextPassword, saltRounds).then(function(hash) {
       user.password = hash
     });
-  });  
-    
+  });
+
   return User;
 };

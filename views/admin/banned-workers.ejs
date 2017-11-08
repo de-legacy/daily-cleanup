@@ -3,10 +3,12 @@
 <main class="content">
 	<div class="row">
 		<div class="col-md-12">
-				<h3 class="no-mt">All Workers</h3>
+			<h2 class="no-mt">Banned Workers</h2>
+
 			<table class="table">
 				<thead>
 					<tr>
+						<!-- <th>Avatar</th> -->
 						<th>Nama Worker</th>
 						<th>No. Telephone</th>
 						<th>Email</th>
@@ -18,6 +20,7 @@
 				<tbody>
 				<% allWorkers.forEach( function(worker, index) { %>
 					<tr>
+						<!-- <td><img src="https://placeimg.com/100/100/people" alt="worker" /></td> -->
 						<td><%= worker.fullname %></td>
 						<td><%= worker.phone %></td>
 						<td><%= worker.email %></td>
@@ -34,7 +37,6 @@
 				<% }); %>
 				</tbody>
 			</table>
-			<a href="/admin/workers/add" class="btn btn-info">Add Worker</a>
 
 		</div><!-- /.col-md-12 -->
 	</div><!-- /.row -->

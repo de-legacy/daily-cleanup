@@ -75,17 +75,17 @@ router.post('/edit/:id', checklogin, function(req,res) {
 })
 
 // Admin Worker
-router.get('/workers/add', (req, res) => {
-	res.render('admin/add-worker');
+router.get('/workers/add', checklogin, (req, res) => {
+	res.render('admin/add-worker', {loggedIn: req.session.loggedIn, privelege: req.session.privelege});
 })
 
 // Add
-router.post('/workers/add', (req, res) => {
+router.post('/workers/add', checklogin, (req, res) => {
 	Model.Worker.create({
 		fullname : req.body.fullname,
 		phone: req.body.phone,
 		email: req.body.email,
-		averagerating: (req.body.averagerating === '') ? null : +req.body.averagerating
+		averagerating: (req.body.averagerating === '') ? 0 : +req.body.averagerating
 	}).then(success => {
 		res.redirect('/admin/workers');
 
@@ -94,15 +94,15 @@ router.post('/workers/add', (req, res) => {
 
 //Edit
 
-router.get('/workers/edit/:workerId', (req, res) => {
+router.get('/workers/edit/:workerId', checklogin, (req, res) => {
 	Model.Worker.findById(req.params.workerId)
 		.then(worker => {
-			res.render('admin/add-worker', {editedWorker: worker});
+			res.render('admin/add-worker', {editedWorker: worker, loggedIn: req.session.loggedIn, privelege: req.session.privelege});
 
 		}).catch(err => res.send(err.message));
 });
 
-router.post('/workers/edit/:workerId', (req, res) => {
+router.post('/workers/edit/:workerId', checklogin, (req, res) => {
 	Model.Worker.update(
 		{
 	    fullname: req.body.fullname,
@@ -122,7 +122,7 @@ router.post('/workers/edit/:workerId', (req, res) => {
 })
 
 // Delete
-router.get('/workers/delete/:workerId', (req, res) => {
+router.get('/workers/delete/:workerId', checklogin, (req, res) => {
 	Model.Worker.destroy({
 		where: {
 			id: req.params.workerId
@@ -132,5 +132,21 @@ router.get('/workers/delete/:workerId', (req, res) => {
 
 	}).catch(err => res.send(err.message));
 })
+
+// Banned Worker
+router.get('/workers/banned', checklogin, (req, res) => {
+	Model.Worker.findAll(
+			{
+				where: {
+					averagerating: {
+						lte: 3
+					}
+				}
+			}
+		)
+		.then(allBannedWorkers => {
+			res.render('admin/banned-workers', {allWorkers : allBannedWorkers, loggedIn: req.session.loggedIn, privelege: req.session.privelege });
+		}).catch(err => res.send(err.message));
+});
 
 module.exports = router;

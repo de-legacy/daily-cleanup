@@ -54,7 +54,7 @@ router.get('/register', function(req,res) {
 
 router.post('/register', function(req,res) {
 	Model.User.create(req.body).then(() => {
-		res.redirect('/login')
+		res.render('login', {message: 'Sukses membuat Akun', error: false})
 	})
 })
 

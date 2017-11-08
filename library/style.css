@@ -1,7 +1,24 @@
+body {
+	background: url('images/main-bg.jpeg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
 .main-header {
 	color: white;
 	padding: 2rem 0;
 	background: #00acc1;
+}
+
+.content {
+	padding: 2rem;
+	background: rgba(255, 255, 255, 0.8);
+}
+
+.map-wrapper {
+	margin-top: 2rem;
+	padding: 2rem 0 0 0;
+	background: rgba(255, 255, 255, 0.8);
 }
 
 	.main-title {
@@ -33,4 +50,8 @@
 
 .no-mt{
 	margin-top: 0;
+}
+
+.rating-star .fa {
+	color: orange;
 }
