@@ -60,7 +60,7 @@ router.post('/register', function(req,res) {
 		username : req.body.username
 	}})
 	  .then(edit => {
-		if(edit.length = 0 ){
+		if(edit == null){
 			Model.User
 			 .create(req.body)
 			  .then(() => {
