@@ -4,6 +4,7 @@
   "description": "Pair project Hacktiv8 Phase 1",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,7 +15,7 @@
     "express",
     "nodejs"
   ],
-  "author": "Septian, Ahmad",
+  "author": "Septian A. F., Ahmad S.",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/fujianto/daily-cleanup/issues"
