@@ -42,6 +42,8 @@
 					<% if (typeof loggedIn == "undefined" || loggedIn == false) { %>
 						<li><a href="/login">Login</a></li>
 						<li><a href="/register">Register</a></li>
+					<% } else { %>
+						<li><a href="/user/list-workers">Member Area</a></li>
 					<% } %>
 
 					<% if (typeof loggedIn != "undefined" && loggedIn ) { %>

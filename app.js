@@ -12,7 +12,6 @@ app.use(session({
 	secret: "successlogged"
 }))
 
-
 const Index = require("./routers/index")
 const User	= require("./routers/user")
 const Admin = require("./routers/admin")
@@ -22,4 +21,4 @@ app.use('/', Index)
 app.use('/user', User)
 app.use('/admin', Admin)
 
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(process.env.PORT || '3000', () => console.log('Example app listening on port 3000!'))
