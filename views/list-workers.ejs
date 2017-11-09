@@ -15,6 +15,7 @@
 					</tr>
 				</thead>
 				<% allWorker.forEach(worker => {%>
+					<% if (worker.averagerating >=3 ) {%>
 				<tbody>
 					<tr>
 						<td><%= worker.fullname %></td>
@@ -29,6 +30,7 @@
 						<td><a href="/user/order-services/<%= worker.id %>">Pesan</a></td>
 					</tr>
 				</tbody>
+					<% } %>
 				<%})%>
 			</table>
 

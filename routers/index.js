@@ -22,29 +22,29 @@ router.get('/logout', (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-
-	Model.User.findOne({
+	Model.User
+	 .findOne({
 		where : {
 			username : req.body.username
 		}
-	}).then(user => {
+	 })
+	  .then(user => {
 		if(user){
 			bcrypt.compare(req.body.password, user.password).then(result => {
 				if(result){
-					req.session.loggedIn = true
-					req.session.username = user.username
-					req.session.idUser   = user.id
-					req.session.privelege   = user.privelege
-					res.redirect('/user/list-workers')
+				  req.session.loggedIn = true
+				  req.session.username = user.username
+				  req.session.idUser   = user.id
+				  req.session.privelege   = user.privelege
+				  res.redirect('/user/list-workers')
 				}else{
-					res.render('login', {error: true, message : undefined})
+				  res.render('login', {error: true, message : undefined})
 				}
 			})
 		}else{
 			res.render('login', {error: true , message : undefined})
 		}
-	})
-
+	  })
 })
 
 //CREATE USER
@@ -55,36 +55,47 @@ router.get('/register', function(req,res) {
 
 
 router.post('/register', function(req,res) {
-	Model.User.findOne({where : {
+	Model.User
+	 .findOne({where : {
 		username : req.body.username
-	}}).then(edit => {
+	}})
+	  .then(edit => {
 		if(edit.length = 0 ){
-			Model.User.create(req.body).then(() => {
+			Model.User
+			 .create(req.body)
+			  .then(() => {
 				res.render('login', {message: 'Sukses membuat Akun', error: false})
-			})
+			  })
+			   .catch(err => {
+			  	 console.log(err);
+				 res.send(err);
+			   })			  
 		}else{
 			res.render('login', {error: true , message : 'Username Already Used'})
 		}
-	}).catch(err => {
-		res.render('login', {error: true , message : 'Email Already Used'})
-	})
+	  })
+	   .catch(err => {
+		 res.render('login', {error: true , message : 'Email Already Used'})
+	   })
 })
-
 
 //TOP Worker
 
 router.get('/top-workers', (req, res) => {
-	Model.Worker.findAll({
+	Model.Worker
+	 .findAll({
 		where: {
 			averagerating: {
 				gte : 3
 			}
 		}
-	}).then(allWorker => {
-		res.render('top-workers', {allWorker : allWorker});
-	}).catch(err => {
-		res.send(err);
-	})
-
+	 })
+	  .then(allWorker => {
+	  	 res.render('top-workers', {allWorker : allWorker});
+  	  })
+  	   .catch(err => {
+		  res.send(err);
+	   })
 })
+
 module.exports = router;

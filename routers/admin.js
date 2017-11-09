@@ -9,58 +9,86 @@ const checklogin = require ("../helpers/checklogin")
 
 
 router.get('/', checklogin, function(req,res) {
-	Model.User.findAll().then(allUser => {
+	Model.User
+	 .findAll()
+	  .then(allUser => {
 		res.render('admin/all-users', {allUser : allUser, loggedIn: req.session.loggedIn, privelege: req.session.privelege});
-	})
+	  })
+	   .catch(err => {
+	  	 console.log(err);
+		 res.send(err);
+	   })	  
 })
 
 router.get('/users', checklogin, function(req,res) {
-	Model.User.findAll().then(allUser => {
+	Model.User
+	 .findAll()
+	  .then(allUser => {
 		res.render('admin/all-users', {allUser : allUser, loggedIn: req.session.loggedIn, privelege: req.session.privelege});
-	}).catch(err => {
+	  })
+	   .catch(err => {
+	   	console.log(err)
 		res.send(err)
-	})
+	   })
 })
 
 router.get('/workers', checklogin, function(req,res) {
-	Model.Worker.findAll().then(allWorkers => {
+	Model.Worker
+	 .findAll()
+	  .then(allWorkers => {
 		res.render('admin/all-workers', {allWorkers : allWorkers, loggedIn: req.session.loggedIn, privelege: req.session.privelege });
-	})
+	  })
+	   .catch(err => {
+	  	 console.log(err);
+		 res.send(err);
+	   })	  
 })
 
 //DELETE USER
 
 router.get('/delete/:id', checklogin, function(req,res) {
-	Model.User.destroy({
+	Model.User
+	 .destroy({
 		where : {
 			id : req.params.id
 		}
-	}).then(() => {
+	 })
+	  .then(() => {
 		res.redirect('/admin/users')
-	}).catch(err => {
+	  })
+	   .catch(err => {
 		res.send(err);
-	})
+	   })
 })
 
 // EDIT USER ADMIN
 
 router.get('/edit/:id', checklogin, function(req,res) {
-	Model.User.findOne({
+	Model.User
+	 .findOne({
 		where : {
 			id : req.params.id
 		}
-	}).then(edited => {
+	 })
+	  .then(edited => {
 		res.render('admin/add-user', {edit : edited, loggedIn: req.session.loggedIn, privelege: req.session.privelege} )
-	})
+	  })
+	   .catch(err => {
+	  	 console.log(err);
+		 res.send(err);
+	   })	  
 })
 
 router.post('/edit/:id', checklogin, function(req,res) {
-	Model.User.findOne({
+	Model.User
+	 .findOne({
 		where : {
 			id : req.params.id
 		}
-	}).then(edit => {
-		edit.update({
+	 })
+	  .then(edit => {
+		edit
+		 .update({
 			fullname : req.body.fullname,
 			address	 : req.body.address,
 			phone	 : req.body.phone,
@@ -68,12 +96,18 @@ router.post('/edit/:id', checklogin, function(req,res) {
 			username : req.body.username,
 			password : req.body.password,
 			privelege: req.body.privelege
-		}).then(() => {
-			res.redirect('/admin/users')
-		}).catch(err => {
-			res.send(err);	
-		})
-	})
+		 })
+		  .then(() => {
+			 res.redirect('/admin/users')
+		  })
+		   .catch(err => {
+			  res.send(err);	
+		   })
+	  })
+	   .catch(err => {
+	     console.log(err);
+		 res.send(err);
+	   })	  
 })
 
 // Admin Worker
@@ -83,72 +117,95 @@ router.get('/workers/add', checklogin, (req, res) => {
 
 // Add
 router.post('/workers/add', checklogin, (req, res) => {
-	Model.Worker.create({
-		fullname : req.body.fullname,
+	Model.Worker
+	 .create({
+   	    fullname : req.body.fullname,
 		phone: req.body.phone,
 		email: req.body.email,
 		averagerating: (req.body.averagerating === '') ? 0 : +req.body.averagerating
-	}).then(success => {
-		res.redirect('/admin/workers');
-
-	}).catch(err => res.send(err.message));
+ 	 })
+ 	  .then(success => {
+		 res.redirect('/admin/workers');
+ 	  })
+ 	   .catch(err => {
+ 	   	  console.log(err)
+ 	   	  res.send(err.message);
+ 	   })
 })
 
 //Edit
 
 router.get('/workers/edit/:workerId', checklogin, (req, res) => {
-	Model.Worker.findById(req.params.workerId)
-	.then(worker => {
-		res.render('admin/add-worker', {editedWorker: worker, loggedIn: req.session.loggedIn, privelege: req.session.privelege});
-
-	}).catch(err => res.send(err.message));
+	Model.Worker
+	 .findById(req.params.workerId)
+	  .then(worker => {
+		 res.render('admin/add-worker', {editedWorker: worker, loggedIn: req.session.loggedIn, privelege: req.session.privelege});
+	  })
+	   .catch(err => { 
+	   	  console.log(err)
+	   	  res.send(err.message)
+	   });
 });
 
 router.post('/workers/edit/:workerId', checklogin, (req, res) => {
-	Model.Worker.update(
-	{
+	Model.Worker
+	 .update(
+	  {
 		fullname: req.body.fullname,
 		phone: req.body.phone,
 		email: req.body.email,
 		averagerating: +req.body.averagerating
-	},
-	{
+	  },
+	  {
 		where: {
 			id: req.body.WorkerId
 		}
-	}
-	).then(success => {
+	  })
+	  .then(success => {
 		res.redirect('/admin/workers');
 
-	}).catch(err => res.send(err.message));
+	  })
+       .catch(err => { 
+   	     console.log(err)
+   	     res.send(err.message)
+       });
 })
 
 // Delete
 router.get('/workers/delete/:workerId', checklogin, (req, res) => {
-	Model.Worker.destroy({
+	Model.Worker
+	 .destroy({
 		where: {
 			id: req.params.workerId
 		}
-	}).then(success => {
+	 })
+	 .then(success => {
 		res.redirect('/admin/workers');
-
-	}).catch(err => res.send(err.message));
+	 })
+      .catch(err => { 
+   	     console.log(err)
+   	     res.send(err.message)
+      });
 })
 
 // Banned Worker
 router.get('/workers/banned', checklogin, (req, res) => {
-	Model.Worker.findAll(
-	{
+	Model.Worker
+	.findAll(
+	 {
 		where: {
 			averagerating: {
 				lte: 3
 			}
 		}
-	}
-	)
+	 })
 	.then(allBannedWorkers => {
-		res.render('admin/banned-workers', {allWorkers : allBannedWorkers, loggedIn: req.session.loggedIn, privelege: req.session.privelege });
-	}).catch(err => res.send(err.message));
+	   res.render('admin/banned-workers', {allWorkers : allBannedWorkers, loggedIn: req.session.loggedIn, privelege: req.session.privelege });
+	})
+     .catch(err => { 
+   	    console.log(err)
+   	    res.send(err.message)
+     });	
 });
 
 module.exports = router;
