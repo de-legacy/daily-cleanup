@@ -85,6 +85,7 @@ router.post('/register', function(req,res) {
 router.get('/top-workers', (req, res) => {
 	Model.Worker
 	 .findAll({
+	 	order: [ ['averagerating', 'DESC']],
 		where: {
 			averagerating: {
 				gte : 3
