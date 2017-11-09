@@ -18,6 +18,16 @@ class Helper {
 
 		return arrStar;
 	}
+
+	static isLoggedIn(req) {
+		if (req.session.loggedIn){
+
+			return true;
+		} else {
+
+			return false;
+		}
+	}
 }
 
 module.exports = Helper;

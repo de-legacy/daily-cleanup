@@ -6,9 +6,10 @@ const bcrypt		= require('bcrypt');
 const Model = require("../models")
 const checklogin = require ("../helpers/checklogin")
 const checksession = require ("../helpers/checksession")
+const Helper = require("../helpers/helper");
 
 router.get('/', (req, res) => {
-	res.render('index');
+	res.render('index', {loggedIn : Helper.isLoggedIn(req)});
 })
 
 router.get('/login', checksession , (req, res) => {
@@ -50,7 +51,7 @@ router.post('/login', (req, res) => {
 //CREATE USER
 
 router.get('/register', function(req,res) {
-	res.render('register')
+	res.render('register', {loggedIn : Helper.isLoggedIn(req)})
 })
 
 
@@ -81,7 +82,7 @@ router.get('/top-workers', (req, res) => {
 			}
 		}
 	}).then(allWorker => {
-		res.render('top-workers', {allWorker : allWorker});
+		res.render('top-workers', {allWorker : allWorker, loggedIn : Helper.isLoggedIn(req)});
 	}).catch(err => {
 		res.send(err);
 	})
